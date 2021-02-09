@@ -12,8 +12,8 @@ const count_slider = document.getElementById( 'count' )
 count_slider.addEventListener( 'input', onSliderChange, false )
 const radius_slider = document.getElementById( 'radius' )
 radius_slider.addEventListener( 'input', onSliderChange, false )
-const radius_slider = document.getElementById( 'segments' )
-radius_slider.addEventListener( 'input', onSliderChange, false )
+const segments_slider = document.getElementById( 'segments' )
+segments_slider.addEventListener( 'input', onSliderChange, false )
 
 const downloadButton = document.getElementById("downloadButton")
 downloadButton.onclick = download
@@ -61,7 +61,7 @@ async function compute() {
     let param2 = new RhinoCompute.Grasshopper.DataTree('RH_IN:count')
     param2.append([0], [count])
     let param3 = new RhinoCompute.Grasshopper.DataTree('RH_IN:segments')
-    param2.append([0], [count])
+    param3.append([0], [segments])
 
     // Add all params to an array
     let trees = []
@@ -169,9 +169,9 @@ function init() {
 
     // create a scene and a camera
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(0, 0, 0)
+    scene.background = new THREE.Color(1, 1, 1)
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    camera.position.z = - 10
+    camera.position.z = -30
 
     // create the renderer and add it to the html
     renderer = new THREE.WebGLRenderer({ antialias: true })
