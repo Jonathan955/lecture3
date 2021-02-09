@@ -12,6 +12,8 @@ const count_slider = document.getElementById( 'count' )
 count_slider.addEventListener( 'input', onSliderChange, false )
 const radius_slider = document.getElementById( 'radius' )
 radius_slider.addEventListener( 'input', onSliderChange, false )
+const radius_slider = document.getElementById( 'segments' )
+radius_slider.addEventListener( 'input', onSliderChange, false )
 
 const downloadButton = document.getElementById("downloadButton")
 downloadButton.onclick = download
@@ -57,11 +59,14 @@ async function compute() {
     param1.append([0], [radius])
     let param2 = new RhinoCompute.Grasshopper.DataTree('RH_IN:count')
     param2.append([0], [count])
+    let param3 = new RhinoCompute.Grasshopper.DataTree('RH_IN:segments')
+    param2.append([0], [count])
 
     // Add all params to an array
     let trees = []
     trees.push(param1)
     trees.push(param2)
+    trees.push(param3)
 
     // Call RhinoCompute
 
@@ -163,9 +168,9 @@ function init() {
 
     // create a scene and a camera
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(1, 1, 1)
+    scene.background = new THREE.Color(0, 0, 0)
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    camera.position.z = - 30
+    camera.position.z = - 10
 
     // create the renderer and add it to the html
     renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -177,7 +182,7 @@ function init() {
 
     // add a directional light
     const directionalLight = new THREE.DirectionalLight( 0xffffff )
-    directionalLight.intensity = 2
+    directionalLight.intensity = 1
     scene.add( directionalLight )
 
     const ambientLight = new THREE.AmbientLight()
